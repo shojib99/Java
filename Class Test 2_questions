@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class SecondSmallestFinder {
+
+    
+    public static <T extends Comparable<T>> T gen_func(T[] array) {
+        if (array == null || array.length < 2) {
+            throw new IllegalArgumentException("Array must contain at least two elements.");
+        }
+
+
+        Set<T> set = new TreeSet<>(Arrays.asList(array));
+        if (set.size() < 2) {
+            throw new IllegalArgumentException("Array must contain at least two distinct elements.");
+        }
+
+    
+        List<T> sortedList = new ArrayList<>(set);
+        return sortedList.get(1);
+    }
+
+    public static void main(String[] args) {
+        
+        Integer[] arrayInt = {5, 3, 7, 13, 1};
+        Character[] arrayChar = {'s', 'f', 'w', 'c', 'h', 'a'};
+
+        System.out.println("Second smallest in arrayInt: " + gen_func(arrayInt));   
+        System.out.println("Second smallest in arrayChar: " + gen_func(arrayChar));
+    }
+}
