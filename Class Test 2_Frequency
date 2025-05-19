@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class SpecialCharacterCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        List<Character> specialChars = new ArrayList<>();
+
+        for (char ch : input.toCharArray()) {
+            if (!Character.isLetterOrDigit(ch) && !Character.isWhitespace(ch)) {
+                specialChars.add(ch);
+            }
+        }
+
+        Map<Character, Integer> freqMap = new HashMap<>();
+
+        for (Character ch : specialChars) {
+            freqMap.put(ch, freqMap.getOrDefault(ch, 0) + 1);
+        }
+
+        System.out.println("\nSpecial Character Frequencies:");
+        for (Map.Entry<Character, Integer> entry : freqMap.entrySet()) {
+            System.out.println("'" + entry.getKey() + "' = " + entry.getValue());
+        }
+
+        scanner.close();
+    }
+}
