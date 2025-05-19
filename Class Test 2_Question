@@ -1,0 +1,52 @@
+class GenericData<T> {
+    private T data;
+
+    public GenericData(T data) {
+        this.data = data;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public void argSwap(GenericData<T> other) {
+        try {
+            if (other == null) {
+                throw new NullPointerException("The passed object is null!");
+            }
+
+            T temp = this.data;
+            this.data = other.getData();
+            other.setData(temp);
+
+            System.out.println("Swap successful!");
+        } catch (NullPointerException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+    
+        GenericData<String> obj1 = new GenericData<>("Hello");
+        GenericData<String> obj2 = new GenericData<>("World");
+
+        System.out.println("Before Swap:");
+        System.out.println("obj1 = " + obj1.getData());
+        System.out.println("obj2 = " + obj2.getData());
+
+        obj1.argSwap(obj2);
+
+        System.out.println("\nAfter Swap:");
+        System.out.println("obj1 = " + obj1.getData());
+        System.out.println("obj2 = " + obj2.getData());
+
+        GenericData<String> obj3 = null;
+        obj1.argSwap(obj3);
+    }
+}
