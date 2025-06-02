@@ -30,7 +30,7 @@ class Team {
     }
 
     public void displayTeam() {
-        System.out.println(teamName);
+        System.out.println("== " + teamName + " ==");
         for (Player p : players) {
             System.out.println(" - " + p);
         }
@@ -43,6 +43,7 @@ public class BPLTeamBuilder {
         List<Player> bangladeshiPlayers = new ArrayList<>();
         List<Player> foreignPlayers = new ArrayList<>();
 
+        // Add Bangladeshi Players
         bangladeshiPlayers.add(new Player("Shakib Al Hasan", "Bangladesh"));
         bangladeshiPlayers.add(new Player("Tamim Iqbal", "Bangladesh"));
         bangladeshiPlayers.add(new Player("Mushfiqur Rahim", "Bangladesh"));
@@ -54,7 +55,7 @@ public class BPLTeamBuilder {
         bangladeshiPlayers.add(new Player("Nasum Ahmed", "Bangladesh"));
         bangladeshiPlayers.add(new Player("Mahmudullah", "Bangladesh"));
 
-
+        // Add Foreign Players
         foreignPlayers.add(new Player("Chris Gayle", "West Indies"));
         foreignPlayers.add(new Player("AB de Villiers", "South Africa"));
         foreignPlayers.add(new Player("Steve Smith", "Australia"));
@@ -71,28 +72,23 @@ public class BPLTeamBuilder {
         foreignPlayers.add(new Player("Jos Buttler", "England"));
         foreignPlayers.add(new Player("Trent Boult", "New Zealand"));
 
-
-
         List<Team> teams = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-
             Collections.shuffle(bangladeshiPlayers);
             Collections.shuffle(foreignPlayers);
 
-            Team team = new Team("Team " + (i+1));
+            Team team = new Team("Team " + (i + 1));
 
             for (int j = 0; j < 2; j++) {
-                team.addPlayer(bangladeshiPlayers.removeFirst());
+                team.addPlayer(bangladeshiPlayers.remove(0)); 
             }
 
-
             for (int j = 0; j < 3; j++) {
-                team.addPlayer(foreignPlayers.removeFirst());
+                team.addPlayer(foreignPlayers.remove(0));
             }
 
             teams.add(team);
         }
-
 
         for (Team team : teams) {
             team.displayTeam();
